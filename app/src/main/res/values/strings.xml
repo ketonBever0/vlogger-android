@@ -34,4 +34,6 @@
     <string name="auth">Auth</string>
     <string name="prompt_confirm_password">Confirm Password</string>
     <string name="full_name">Full Name</string>
+    <string name="or">or</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>

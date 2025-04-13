@@ -29,7 +29,7 @@
         tools:layout="@layout/activity_login" />
     <activity
         android:id="@+id/nav_register"
-        android:name="com.example.touristvlogger.auth.register.RegisterActivity"
+        android:name="com.example.touristvlogger.auth.RegisterActivity"
         android:label="activity_register"
         tools:layout="@layout/activity_register" />
 </navigation>

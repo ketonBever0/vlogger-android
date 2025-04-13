@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".auth.LoginActivity"
-    android:paddingStart="14dp"
-    android:paddingEnd="14dp">
+    android:paddingStart="30dp"
+    android:paddingEnd="30dp">
 
     <!--    <include layout="@layout/shared/appbar"-->
     <!--        android:layout_width="match_parent"-->
@@ -18,9 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Login"
+        android:text="@string/login"
         android:textAlignment="center"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -68,13 +68,13 @@
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
             android:onClick="onSubmit"
-            android:text="Sign In" />
+            android:text="@string/login" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="or"
+            android:text="@string/or"
             android:textAlignment="center" />
 
         <Button
@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Sign Up" />
+            android:text="@string/register" />
 
     </LinearLayout>
 

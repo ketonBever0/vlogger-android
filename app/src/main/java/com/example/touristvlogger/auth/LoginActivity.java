@@ -53,27 +53,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-//    private void updateUI(FirebaseUser user) {
-//        if (user != null) {
-//            String email = user.getEmail();
-//            Toast.makeText(this, "Sikeres bejelentkezés: " + email, Toast.LENGTH_SHORT).show();
-//
-//            NavigationView navigationView = findViewById(R.id.nav_view);
-//            Menu menu = navigationView.getMenu();
-//
-//            boolean isLoggedIn = true;
-//
-//            menu.findItem(R.id.nav_login).setVisible(!isLoggedIn);
-//            menu.findItem(R.id.nav_register).setVisible(!isLoggedIn);
-//            menu.findItem(R.id.nav_profile).setVisible(isLoggedIn);
-//            menu.findItem(R.id.nav_logout).setVisible(isLoggedIn);
-//
-//
-//        } else {
-//            Toast.makeText(this, "Hiba", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-
     public void onSubmit(View view) {
         if (this.emailET.getText().toString().isEmpty() || this.passwordET.getText().toString().isEmpty()) {
             return;
@@ -81,14 +60,10 @@ public class LoginActivity extends AppCompatActivity {
         fAuth.signInWithEmailAndPassword(emailET.getText().toString(), passwordET.getText().toString())
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        FirebaseUser user = fAuth.getCurrentUser();
-//                        updateUI(user);
-                        Toast.makeText(this, "Sikeres bejelentkezés", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
                         this.finish();
                     } else {
-//                        Log.w("MainActivity", "Bejelentkezés sikertelen", task.getException());
-//                        updateUI(null);
-                        Toast.makeText(this, "Sikertelen bejelentkezés", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Login failed!", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
