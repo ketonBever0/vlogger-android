@@ -5,7 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".auth.LoginActivity">
+    tools:context=".auth.LoginActivity"
+    android:paddingStart="14dp"
+    android:paddingEnd="14dp">
 
     <!--    <include layout="@layout/shared/appbar"-->
     <!--        android:layout_width="match_parent"-->

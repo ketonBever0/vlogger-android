@@ -6,4 +6,13 @@
     </style>
 
     <style name="Theme.TouristVlogger" parent="Base.Theme.TouristVlogger" />
+
+    <style name="Theme.TouristVlogger.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.TouristVlogger.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.TouristVlogger.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -1,58 +1,137 @@
 package com.example.touristvlogger;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Menu;
 
-import com.example.touristvlogger.auth.LoginActivity;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.navigation.NavigationView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.touristvlogger.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private AppBarConfiguration mAppBarConfiguration;
+    private ActivityMainBinding binding;
+    private FirebaseAuth fAuth;
+
+
+    DrawerLayout mDrawerLayout;
+    NavigationView navigationView;
+
+    Menu menu;
+    MenuItem logoutItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-//        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-//        BottomNavigationView navView = findViewById(R.id.nav_view);
+
+
+        setSupportActionBar(binding.appBarMain.toolbar);
+        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .setAnchorView(R.id.fab).show();
+            }
+        });
+
+//        MenuItem loginMenuItem = findViewById(R.id.nav_login);
+//        loginMenuItem.setOnMenuItemClickListener(v -> {
+//            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//            startActivity(intent);
+//            return false;
+//        });
+
+
+
+        DrawerLayout drawer = binding.drawerLayout;
+        NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_login, R.id.nav_register, R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                .setOpenableLayout(drawer)
                 .build();
-        binding.navHostFragment.getFragment();
-        NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
 
-//        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-//        if (navHostFragment != null) {
-//            NavController navController = navHostFragment.getNavController();
-//            NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//            NavigationUI.setupWithNavController(binding.navView, navController);
-//        } else {
-//            throw new IllegalStateException("NavHostFragment not found");
-//        }
+        this.fAuth = FirebaseAuth.getInstance();
+
+        this.menu = navigationView.getMenu();
+
+        this.logoutItem = menu.findItem(R.id.nav_logout);
+        logoutItem.setOnMenuItemClickListener(item -> {
+            this.fAuth.signOut();
+            this.recreate();
+            return true;
+        });
+        updateDrawer();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateDrawer();
+    }
+
+    private void updateDrawer() {
+        MenuItem loginItem = this.menu.findItem(R.id.nav_login);
+        MenuItem registerItem = this.menu.findItem(R.id.nav_register);
+        MenuItem profileItem = this.menu.findItem(R.id.nav_profile);
+
+        if (this.fAuth.getCurrentUser() != null) {
+            loginItem.setVisible(false);
+            registerItem.setVisible(false);
+            profileItem.setVisible(true);
+            this.logoutItem.setVisible(true);
+        } else {
+            loginItem.setVisible(true);
+            registerItem.setVisible(true);
+            profileItem.setVisible(false);
+            this.logoutItem.setVisible(false);
+        }
     }
 
 
-    public void onLoginButtonPressed(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.nav_logout) {
+            fAuth.signOut();
+            mDrawerLayout.refreshDrawableState();
+        }
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }
