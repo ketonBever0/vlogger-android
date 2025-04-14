@@ -2,6 +2,7 @@ package com.example.touristvlogger.auth;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -82,5 +83,30 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(this, "Registration failed!", LENGTH_SHORT).show();
                     }
                 });
+
+        View rootLayout = findViewById(R.id.main);
+        rootLayout.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            Rect rect = new Rect();
+            rootLayout.getWindowVisibleDisplayFrame(rect);
+            int screenHeight = rootLayout.getRootView().getHeight();
+            int keypadHeight = screenHeight - rect.bottom;
+
+            if (keypadHeight > screenHeight * 0.15) { // Ha a billentyűzet látható
+                findViewById(R.id.emailInput).setTranslationY((float) -keypadHeight / 2);
+                findViewById(R.id.fullnameInput).setTranslationY((float) -keypadHeight / 2);
+                findViewById(R.id.passwordInput).setTranslationY((float) -keypadHeight / 2);
+                findViewById(R.id.confirmPasswordInput).setTranslationY((float) -keypadHeight / 2);
+            } else { // Ha a billentyűzet eltűnik
+                findViewById(R.id.emailInput).setTranslationY(0);
+                findViewById(R.id.fullnameInput).setTranslationY(0);
+                findViewById(R.id.passwordInput).setTranslationY(0);
+                findViewById(R.id.confirmPasswordInput).setTranslationY(0);
+            }
+        });
     }
+
+    public void onBack(View view) {
+        this.finish();
+    }
+
 }

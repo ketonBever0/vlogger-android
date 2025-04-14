@@ -9,17 +9,16 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".auth.LoginActivity">
-
+        tools:context=".auth.RegisterActivity">
 
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:onClick="onBack"
-            android:src="@drawable/arrow_back_24px"
+            android:src="@drawable/arrow_back_48px"
             app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,10 +27,9 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/login"
+            android:text="@string/register"
             android:textAlignment="center"
-            android:textSize="30sp"
+            android:textSize="48sp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -41,15 +39,15 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
             android:orientation="vertical"
             app:flow_horizontalAlign="center"
             app:flow_verticalAlign="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@id/textView">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,11 +63,35 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/miniGap"
+                android:text="@string/full_name" />
+
+            <EditText
+                android:id="@+id/fullnameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/miniGap"
                 android:text="@string/passwordText" />
 
             <EditText
                 android:id="@+id/passwordInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/miniGap"
+                android:text="@string/confirm_password" />
+
+            <EditText
+                android:id="@+id/confirmPasswordInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
@@ -79,25 +101,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:onClick="onSubmit"
-                android:text="@string/login" />
+                android:paddingLeft="30dp"
+                android:paddingTop="20dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="20dp"
+                android:text="@string/register"
+                android:textSize="28sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/or"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/button2"
-
                 style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/register" />
+                android:paddingLeft="26dp"
+                android:paddingTop="16dp"
+                android:paddingRight="26dp"
+                android:paddingBottom="16dp"
+                android:text="@string/login"
+                android:textSize="24sp" />
 
         </LinearLayout>
 

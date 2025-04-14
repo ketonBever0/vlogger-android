@@ -13,13 +13,13 @@
 
 
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:onClick="onBack"
-            android:src="@drawable/arrow_back_24px"
+            android:src="@drawable/arrow_back_48px"
             app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/login"
             android:textAlignment="center"
-            android:textSize="30sp"
+            android:textSize="48sp"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -41,8 +41,8 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
             android:orientation="vertical"
             app:flow_horizontalAlign="center"
             app:flow_verticalAlign="center"
@@ -81,23 +81,33 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="60dp"
                 android:onClick="onSubmit"
-                android:text="@string/login" />
+                android:paddingLeft="30dp"
+                android:paddingTop="20dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="20dp"
+                android:text="@string/login"
+                android:textSize="28sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/or"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textSize="28sp" />
 
             <Button
                 android:id="@+id/button2"
-
                 style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/register" />
+                android:paddingLeft="26dp"
+                android:paddingTop="16dp"
+                android:paddingRight="26dp"
+                android:paddingBottom="16dp"
+                android:text="@string/register"
+                android:textSize="24sp" />
 
         </LinearLayout>
 

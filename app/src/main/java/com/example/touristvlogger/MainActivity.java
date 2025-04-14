@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -76,9 +77,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         this.menu = navigationView.getMenu();
 
+
         this.logoutItem = menu.findItem(R.id.nav_logout);
         logoutItem.setOnMenuItemClickListener(item -> {
             this.fAuth.signOut();
+            Toast.makeText(this, "Logged out.", Toast.LENGTH_SHORT).show();
             this.recreate();
             return true;
         });
@@ -102,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             registerItem.setVisible(false);
             profileItem.setVisible(true);
             this.logoutItem.setVisible(true);
+
         } else {
             loginItem.setVisible(true);
             registerItem.setVisible(true);

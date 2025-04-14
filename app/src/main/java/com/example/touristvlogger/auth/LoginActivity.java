@@ -68,4 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    public void onBack(View view) {
+        this.finish();
+    }
+
 }
