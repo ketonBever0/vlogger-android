@@ -3,7 +3,7 @@
 
 ## Futtatás
 
-Az applikáció telepíthető Android eszközökre a CooSpace beadványban mellékelt `.apk` fájl futtatásával - ehhez engedélyezd a külső forrásokból származó alkalmazások telepítését.
+Az applikáció telepíthető Android eszközökre a CooSpace beadványban mellékelt `tourist-vlogger-app.apk` fájl futtatásával - ehhez engedélyezd a külső forrásokból származó alkalmazások telepítését.
 
 Ha szeretnéd fejlesztői módban is kipróbálni az appot, előbb tedd a szintén mellékelt `google-services.json` fájlt a projekt gyökerében található `app` mappába.
 
